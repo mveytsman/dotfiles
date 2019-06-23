@@ -157,6 +157,7 @@ bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcu
 # Set up default workspaces
 assign [class="Firefox"] $ws1
 assign [class="Emacs"] $ws3
+for_window [class="Emacs"] fullscreen enable
 
 # autostart
 exec --no-startup-id firefox
