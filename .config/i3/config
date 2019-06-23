@@ -97,6 +97,7 @@ bindsym $mod+a focus parent
 bindsym XF86AudioMute exec amixer sset Master toggle
 bindsym XF86AudioLowerVolume exec amixer sset Master 2dB- unmute
 bindsym XF86AudioRaiseVolume exec amixer sset Master 2db+ unmute
+# TODO these keys are not detected?
 bindmym XF86AudioMicMute exec amixer sset Capture toggle
 bindmym XF86MonBrightnessDown exec xrandr --output eDP1 --brightness .5
 
