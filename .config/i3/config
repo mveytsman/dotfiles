@@ -40,8 +40,8 @@ bindsym $mod+Shift+q kill
 bindsym $mod+x [urgent=latest] focus
 
 # rofi
-bindsym $mod+space exec rofi -show run -p '$ '
-bindsym $mod+Shift+Tab exec rofi -show window -p '[window] '
+bindsym $mod+space exec rofi -theme gruvbox-dark -font "DejaVu Sans Mono 14" -show run -p '$ '
+bindsym $mod+Shift+Tab exec rofi -theme gruvbox-dark -font "DejaVu Sans Mono 14" -show window -p '[window] '
 
 # change focus
 bindsym $mod+j focus left
