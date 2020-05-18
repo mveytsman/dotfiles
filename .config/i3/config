@@ -91,7 +91,10 @@ bindsym $mod+t focus mode_toggle
 bindsym $mod+a focus parent
 
 # focus the child container
-#bindsym $mod+d focus child
+bindsym $mod+d focus child
+
+# Moving workspaces between screens 
+bindsym $mod+p move workspace to output right
 
 # special keys
 bindsym XF86AudioMute exec amixer sset Master toggle
