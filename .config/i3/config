@@ -40,7 +40,7 @@ bindsym $mod+Shift+q kill
 bindsym $mod+x [urgent=latest] focus
 
 # rofi
-bindsym $mod+space exec rofi -theme gruvbox-dark -font "DejaVu Sans Mono 14" -show run -p '$ '
+bindsym $mod+space exec rofi -theme gruvbox-dark -font "DejaVu Sans Mono 14" -show drun -p '$ '
 bindsym $mod+Shift+Tab exec rofi -theme gruvbox-dark -font "DejaVu Sans Mono 14" -show window -p '[window] '
 
 # change focus
@@ -108,9 +108,9 @@ bindmym XF86MonBrightnessDown exec xrandr --output eDP1 --brightness .5
 # We use variables to avoid repeating the names in multiple places.
 set $ws1 "1: browse"
 set $ws2 "2: term"
-set $ws3 "3: emacs"
-set $ws4 "4"
-set $ws5 "5"
+set $ws3 "3: code"
+set $ws4 "4: pwd"
+set $ws5 "5: chat"
 set $ws6 "6"
 set $ws7 "7"
 set $ws8 "8"
@@ -156,16 +156,25 @@ bindsym $mod+Shift+r restart
 # exit i3 (logs you out of your X session)
 bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -B 'Yes, exit i3' 'i3-msg exit'"
 
+# Screenshot
+#selection
+bindsym $mod+Shift+s exec "filename=~/screenshots/$(date +%Y-%m-%d_%H:%M:%S)-selection.png; maim -s $filename; xclip $filename -selection clipboard -t image/png"
+#active window
+bindsym $mod+Control+s exec "window=$(xdotool getactivewindow); filename=~/screenshots/$(date +%Y-%m-%d_%H:%M:%S)-$(xdotool getwindowname $window | tr ' ' '_').png; maim -i $window $filename; xclip $filename -selection clipboard -t image/png"
+
 
 # Set up default workspaces
 assign [class="Firefox"] $ws1
 assign [class="Emacs"] $ws3
 for_window [class="Emacs"] fullscreen enable
 
+# Make some windows float by default
+for_window [class="Pavucontrol"] sticky enable floating enable resize set 1024 480 
+
 # autostart
+exec --no-startup-id nm-applet
 exec --no-startup-id firefox
 exec --no-startup-id i3-msg "workspace $ws2; exec i3-sensible-terminal"
-exec --no-startup-id emacs
 #workspace $ws3
 #workspace $ws2
 #workspace $ws1
@@ -200,5 +209,5 @@ bindsym $mod+r mode "resize"
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
 bar {
-        status_command i3status
+        status_command i3status-rs ~/.config/i3/i3status-rs.toml
 }
